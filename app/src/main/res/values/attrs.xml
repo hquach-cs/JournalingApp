@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="color">
+        <!-- Dark Theme -->
+        <attr name="colorDarkBackground" format="color"></attr>
+        <attr name="colorDarkPrimary" format="color"></attr>
+        <attr name="colorDarkPrimaryDark" format="color"></attr>
+        <attr name="colorDarkAccent" format="color"></attr>
+
+        <!-- Light Theme -->
+        <attr name="colorLightBackground" format="color"></attr>
+        <attr name="colorLightPrimary" format="color"></attr>
+        <attr name="colorLightPrimaryDark" format="color"></attr>
+        <attr name="colorLightAccent" format="color"></attr>
+    </declare-styleable>
+</resources>

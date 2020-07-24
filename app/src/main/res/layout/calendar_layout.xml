@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/calender_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="S" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="M" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="T" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="W" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="T" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="F" />
+        <TextView
+            style="@style/CalendarWeekdayStyle"
+            android:text="S" />
+    </LinearLayout>
+    <GridView
+        android:id="@+id/calender_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="7"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:scrollbars="none"
+        android:fontFamily="@font/indieflower_regular"/>
+</LinearLayout>
