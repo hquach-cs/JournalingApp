@@ -53,14 +53,14 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         calendarToday.setTime(today);
         // inflate item if it does not exist yet
         if (view == null)
-            view = inflater.inflate(R.layout.calendar_day, parent, false);
+            view = inflater.inflate(R.layout.calendar_day_layout, parent, false);
         TextView textView = (TextView)view.findViewById(R.id.day_date);
         // clear styling
         textView.setTextColor(Color.WHITE);
 
         if (month != calendarToday.get(Calendar.MONTH) || year != calendarToday.get(Calendar.YEAR)) {
             // if this day is outside current month, grey it out
-            textView.setTextColor(Color.parseColor("#E0E0E0"));
+            textView.setTextColor(Color.DKGRAY);
         } else if (day == calendarToday.get(Calendar.DATE)) {
             // if it is today, set it to blue/bold
             textView.setTextColor(Color.BLACK);
