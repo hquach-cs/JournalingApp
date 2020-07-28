@@ -29,14 +29,40 @@ public class TimelineView extends LinearLayout {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        events = new ArrayList<>();
-        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
-        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
-        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
-        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events = updateEvent();
 
         // specify an adapter (see also next example)
         mAdapter = new TimelineAdapter(events);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    private List<TimelineEventClass> updateEvent(){
+        List<TimelineEventClass> events = new ArrayList<>();
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        events.add(new TimelineEventClass("Test","Test",new Date(),new Date()));
+        events.add(new TimelineEventClass(new Date()));
+        return events;
     }
 }
