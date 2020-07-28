@@ -9,13 +9,15 @@
         android:layout_height="wrap_content"
         android:text="TIME AM/PM"
         android:layout_marginLeft="10dp"
-        android:textSize="12sp"
-        android:layout_centerVertical="true"/>
+        android:textSize="13sp"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorAccent"
+        />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/colorAccent"
         android:layout_toRightOf="@id/divider_time"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"/>

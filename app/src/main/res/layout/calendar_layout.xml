@@ -38,6 +38,6 @@
         android:numColumns="7"
         android:gravity="center"
         android:stretchMode="columnWidth"
-        android:scrollbars="none"
-        android:fontFamily="@font/indieflower_regular"/>
+        android:scrollbars="none" />
+
 </LinearLayout>

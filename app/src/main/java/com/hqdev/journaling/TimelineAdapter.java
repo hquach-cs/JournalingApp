@@ -1,5 +1,6 @@
 package com.hqdev.journaling;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,12 @@ public class TimelineAdapter extends RecyclerView.Adapter {
             eventDesc = itemView.findViewById(R.id.timeline_card_desc);
             eventTime = itemView.findViewById(R.id.timeline_card_time);
         }
+
+        public void setText(String name,String desc, String time){
+            eventName.setText(name);
+            eventDesc.setText(desc);
+            eventTime.setText(time);
+        }
     }
 
     public static class DividerHolder extends RecyclerView.ViewHolder{
@@ -34,6 +41,10 @@ public class TimelineAdapter extends RecyclerView.Adapter {
         public DividerHolder(View itemView) {
             super(itemView);
             timeView = itemView.findViewById(R.id.divider_time);
+        }
+
+        public void setText(String time){
+            timeView.setText(time);
         }
     }
 
@@ -59,7 +70,12 @@ public class TimelineAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        TimelineEventClass event = events.get(position);
+        if(getItemViewType(position) == 0) { //Divider
+            ((DividerHolder) holder).setText(event.getDivider_time());
+        }else{
+            ((TimelineHolder) holder).setText(event.getEvent_name(),event.getEvent_desc(),event.getEvent_startTime() + "-" + event.getEvent_endTime());
+        }
     }
 
     @Override

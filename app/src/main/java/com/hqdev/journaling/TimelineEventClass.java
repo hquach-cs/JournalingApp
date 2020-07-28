@@ -1,28 +1,27 @@
 package com.hqdev.journaling;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class TimelineEventClass {
 
     Boolean isDivider;
     String event_name;
     String event_desc;
-    Date event_startDate;
-    Date event_endDate;
-    Date event_createDate;
-    Date divider_time;
+    String event_startTime;
+    String event_endTime;
+    Calendar event_createDate;
+    String divider_time;
 
-    public TimelineEventClass(String event_name, String event_desc, Date event_startDate, Date event_endDate){
+    public TimelineEventClass(String event_name, String event_desc, String event_startTime, String event_endTime){
         this.event_name = event_name;
         this.event_desc = event_desc;
-        this.event_startDate = event_startDate;
-        this.event_endDate = event_endDate;
-        this.event_createDate = Calendar.getInstance().getTime();
+        this.event_startTime = event_startTime;
+        this.event_endTime = event_endTime;
+        this.event_createDate = Calendar.getInstance();
         this.isDivider = false;
     }
 
-    public TimelineEventClass(Date divider_time){
+    public TimelineEventClass(String divider_time){
         this.divider_time = divider_time;
         this.isDivider = true;
     }
@@ -35,17 +34,19 @@ public class TimelineEventClass {
         return event_desc;
     }
 
-    public Date getEvent_startDate() {
-        return event_startDate;
+    public String getEvent_startTime() {
+        return event_startTime;
     }
 
-    public Date getEvent_endDate() {
-        return event_endDate;
+    public String getEvent_endTime() {
+        return event_endTime;
     }
 
-    public Date getEvent_createDate() {
+    public Calendar getEvent_createDate() {
         return event_createDate;
     }
+
+    public String getDivider_time(){ return divider_time; }
 
     public int getIsDivider(){
         if(this.isDivider)
