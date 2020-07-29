@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.core.view.GestureDetectorCompat;
 
@@ -34,31 +33,27 @@ public class CalendarView extends LinearLayout {
     }
 
     public void updateCalendar() {
-        List<Date> cells = new ArrayList<>();
-
+        List<Date> days = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-
-        calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
-
-        while (cells.size() < ((minimized == true) ? 7 : 35)) {
-            cells.add(calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        int monthBeginningCell;
+        if(minimized){
+            monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            calendar.add(Calendar.DAY_OF_MONTH,-monthBeginningCell);
+            while(days.size() < 7){
+                days.add(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+        }else {
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+            monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+            while (days.size() < 35) {
+                days.add(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
         }
 
-        gridView.setAdapter(new CalendarAdapter(getContext(), cells));
-        /*
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView)gridView.getChildAt(position).findViewById(R.id.day_date);
-                textView.setBackgroundResource(R.drawable.ic_checkbox_blank_circle);
-                textView.setTextColor(Color.WHITE);
-
-            }
-        });
-        */
+        gridView.setAdapter(new CalendarAdapter(getContext(), days));
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener{
