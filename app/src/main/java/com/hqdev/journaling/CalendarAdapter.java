@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.core.view.GestureDetectorCompat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
 
     LayoutInflater inflater;
     List<Date> days;
+
 
     public CalendarAdapter(Context context, List<Date> days){
         super(context,R.layout.calendar_layout,days);
@@ -69,6 +72,9 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
             textView.setBackgroundResource(R.drawable.ic_checkbox_blank_circle);
         }
         textView.setText(String.valueOf(calendar.get(Calendar.DATE)));
+
         return view;
     }
+
+
 }
