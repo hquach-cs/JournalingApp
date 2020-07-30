@@ -41,10 +41,7 @@ public class TimelineView extends LinearLayout {
     private List<TimelineEventClass> updateEvent(){
         List<TimelineEventClass> events = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
-        //int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
         int hour12hrs = calendar.get(Calendar.HOUR);
-        //int minutes = calendar.get(Calendar.MINUTE);
-        //int seconds = calendar.get(Calendar.SECOND);
         int amorpm = calendar.get(Calendar.AM_PM);
         events.add(new TimelineEventClass(""+hour12hrs+":00 " + ((amorpm == 0) ? "AM" : "PM")));
         events.add(new TimelineEventClass("Food Shopping","Kroger + Publix",hour12hrs + ":00", (hour12hrs+1)+":00"));

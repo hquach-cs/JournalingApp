@@ -62,10 +62,9 @@ public class TimelineAdapter extends RecyclerView.Adapter {
         if(viewType == 0){
             view = layoutInflater.inflate(R.layout.timeline_divider_layout,parent,false);
             return new DividerHolder(view);
-        }else{
-            view = layoutInflater.inflate(R.layout.timeline_event_layout,parent,false);
-            return new TimelineHolder(view);
         }
+        view = layoutInflater.inflate(R.layout.timeline_event_layout,parent,false);
+        return new TimelineHolder(view);
     }
 
     @Override

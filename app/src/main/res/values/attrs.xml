@@ -13,4 +13,11 @@
         <attr name="colorLightPrimaryDark" format="color"></attr>
         <attr name="colorLightAccent" format="color"></attr>
     </declare-styleable>
+    
+    <declare-styleable name="CalendarView" >
+
+    </declare-styleable>
+    <declare-styleable name="TimelineView" >
+
+    </declare-styleable>
 </resources>

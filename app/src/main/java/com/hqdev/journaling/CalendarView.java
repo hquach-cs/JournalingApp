@@ -20,6 +20,8 @@ public class CalendarView extends LinearLayout {
     GridView gridView;
     GestureDetectorCompat gestureDetectorCompat;
     Boolean minimized;
+    com.hqdev.journaling.Date targetDate;
+
 
     public CalendarView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -27,15 +29,16 @@ public class CalendarView extends LinearLayout {
         inflater.inflate(R.layout.calendar_layout, this);
         gridView = findViewById(R.id.calender_grid);
         minimized = false;
+        targetDate = new com.hqdev.journaling.Date();
         updateCalendar();
         gestureDetectorCompat = new GestureDetectorCompat(context,new GestureListener());
-
     }
 
     public void updateCalendar() {
         List<Date> days = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         int monthBeginningCell;
+        targetDate.month = calendar.get(Calendar.MONTH);
         if(minimized){
             monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
             calendar.add(Calendar.DAY_OF_MONTH,-monthBeginningCell);
@@ -82,5 +85,10 @@ public class CalendarView extends LinearLayout {
         gestureDetectorCompat.onTouchEvent(event);
         return super.onInterceptTouchEvent(event);
     }
+
+    public String getTargetDate(){
+        return targetDate.getMonth();
+    }
+
 
 }

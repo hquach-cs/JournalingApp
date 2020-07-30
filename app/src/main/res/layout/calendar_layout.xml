@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -13,25 +13,25 @@
         android:orientation="horizontal">
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="S" />
+            android:text="Sun" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="M" />
+            android:text="Mon" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="T" />
+            android:text="Tue" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="W" />
+            android:text="Wed" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="T" />
+            android:text="Thu" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="F" />
+            android:text="Fri" />
         <TextView
             style="@style/CalendarWeekdayStyle"
-            android:text="S" />
+            android:text="Sat" />
     </LinearLayout>
     <GridView
         android:id="@+id/calender_grid"
@@ -41,5 +41,4 @@
         android:gravity="center"
         android:stretchMode="columnWidth"
         android:scrollbars="none" />
-
 </LinearLayout>
