@@ -8,6 +8,15 @@ public class Date {
     public int hour;
     public int min;
 
+    public Date(){
+
+    }
+
+    public Date(int month, int day, int year){
+        this.year = year;
+        this.day = day;
+        this.month = month;
+    }
     public String getMonth(){
         return monthNames[month];
     }

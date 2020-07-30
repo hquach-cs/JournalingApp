@@ -20,12 +20,14 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
 
     LayoutInflater inflater;
     List<Date> days;
+    com.hqdev.journaling.Date targetDate;
 
 
-    public CalendarAdapter(Context context, List<Date> days){
+    public CalendarAdapter(Context context, List<Date> days, com.hqdev.journaling.Date targetDate){
         super(context,R.layout.calendar_layout,days);
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.days = days;
+        this.targetDate = targetDate;
     }
 
     @Override

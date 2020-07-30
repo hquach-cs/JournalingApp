@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
@@ -29,16 +31,33 @@ public class CalendarView extends LinearLayout {
         inflater.inflate(R.layout.calendar_layout, this);
         gridView = findViewById(R.id.calender_grid);
         minimized = false;
-        targetDate = new com.hqdev.journaling.Date();
+        initCalendar();
         updateCalendar();
         gestureDetectorCompat = new GestureDetectorCompat(context,new GestureListener());
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Date targetDate = (Date)gridView.getItemAtPosition(position);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(targetDate);
+                Log.i("Day Clicked",""+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.YEAR));
+            }
+        });
+    }
+
+    public void initCalendar(){
+        Calendar calendar = Calendar.getInstance();
+        targetDate = new com.hqdev.journaling.Date();
+        targetDate.year = calendar.get(Calendar.YEAR);
+        targetDate.month = calendar.get(Calendar.MONTH);
+        targetDate.day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     public void updateCalendar() {
         List<Date> days = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         int monthBeginningCell;
-        targetDate.month = calendar.get(Calendar.MONTH);
         if(minimized){
             monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
             calendar.add(Calendar.DAY_OF_MONTH,-monthBeginningCell);
@@ -56,7 +75,7 @@ public class CalendarView extends LinearLayout {
             }
         }
 
-        gridView.setAdapter(new CalendarAdapter(getContext(), days));
+        gridView.setAdapter(new CalendarAdapter(getContext(), days,targetDate));
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener{
