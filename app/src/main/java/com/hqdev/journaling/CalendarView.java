@@ -23,7 +23,8 @@ public class CalendarView extends LinearLayout {
     GestureDetectorCompat gestureDetectorCompat;
     Boolean minimized;
     com.hqdev.journaling.Date targetDate;
-
+    float y0 = 0;
+    float y1 = 0;
 
     public CalendarView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -34,6 +35,23 @@ public class CalendarView extends LinearLayout {
         initCalendar();
         updateCalendar();
         gestureDetectorCompat = new GestureDetectorCompat(context,new GestureListener());
+        /*
+        gridView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view,MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    y0 = event.getY();
+                    if (y1 - y0 > 0) {
+                        Log.i("Y", "+" + (y1-y0));
+                    } else if (y1 - y0 < 0) {
+                        Log.i("Y", "-" + (y1 - y0));
+                    }
+                    y1 = event.getY();
+                }
+                return false;
+            }
+        });
+        */
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -81,6 +99,7 @@ public class CalendarView extends LinearLayout {
     private class GestureListener extends GestureDetector.SimpleOnGestureListener{
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            Log.i("GestureController","Scrolling... " + distanceY);
             if(distanceY > 30) {
                 minimized = true;
                 updateCalendar();
@@ -90,6 +109,7 @@ public class CalendarView extends LinearLayout {
             }
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
+
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
