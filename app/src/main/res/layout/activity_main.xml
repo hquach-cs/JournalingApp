@@ -11,13 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:text="Placeholder"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/toolbar_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+
+            />
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
     <com.hqdev.journaling.CalendarView
         android:id="@+id/calendarView"

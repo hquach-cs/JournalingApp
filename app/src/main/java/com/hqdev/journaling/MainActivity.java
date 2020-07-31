@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     CalendarView calendarView;
     Toolbar toolbar;
-    TextView toolbar_title;
+    TextView toolbar_title,toolbar_today;
     RecyclerView recyclerView;
     String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
                 } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     toolbar_title.setText(calendarView.getMonth(position));
                 }
+            }
+        });
+        toolbar_today = findViewById(R.id.toolbar_today);
+        toolbar_today.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendarView.returnToday();
+                toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)] + " " + Calendar.getInstance().get(Calendar.YEAR));
             }
         });
 

@@ -63,7 +63,8 @@ public class CalendarMonthGridAdapter extends ArrayAdapter<Date> {
         if (month != mMonth || year != mYear) {
             // if this day is outside current month, grey it out
             textView.setTextColor(Color.DKGRAY);
-        } else if (mDay == Calendar.getInstance().get(Calendar.DATE) && mMonth == Calendar.getInstance().get(Calendar.MONTH) && mYear == Calendar.getInstance().get(Calendar.YEAR)  ) {
+        }
+        if (mDay == Calendar.getInstance().get(Calendar.DATE) && mMonth == Calendar.getInstance().get(Calendar.MONTH) && mYear == Calendar.getInstance().get(Calendar.YEAR)  ) {
             // if it is today, set it to blue/bold
             textView.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
         }

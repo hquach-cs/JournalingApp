@@ -24,6 +24,7 @@ public class CalendarView extends LinearLayout {
     DateClass nextYear;
     DateClass prevYear;
     DateClass targetDate;
+    int currentDatePos;
 
     public CalendarView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -34,7 +35,6 @@ public class CalendarView extends LinearLayout {
 
     private void MonthData(int year,boolean next){
         if(months == null) {
-
             nextYear = new DateClass();
             prevYear = new DateClass();
             nextYear.year = year;
@@ -60,7 +60,8 @@ public class CalendarView extends LinearLayout {
         targetDate = new DateClass();
         recyclerView = findViewById(R.id.calendar_recyclerView);
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        layoutManager.scrollToPosition(Calendar.getInstance().get(Calendar.MONTH));
+        currentDatePos = Calendar.getInstance().get(Calendar.MONTH);
+        layoutManager.scrollToPosition(currentDatePos);
         recyclerView.setLayoutManager(layoutManager);
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
@@ -91,6 +92,7 @@ public class CalendarView extends LinearLayout {
         MonthData(prevYear.year,false);
         mAdapter.notifyDataSetChanged();
         layoutManager.scrollToPosition(12);
+        currentDatePos += 12;
     }
 
     public void selectTargetDate(Date date){
@@ -100,5 +102,11 @@ public class CalendarView extends LinearLayout {
         targetDate.month = calendar.get(Calendar.MONTH);
         targetDate.day = calendar.get(Calendar.DAY_OF_MONTH);
         Log.i("TargetDate","" + targetDate.month + "/" + targetDate.day + "/" + targetDate.year);
+    }
+
+    public void returnToday(){
+        layoutManager.scrollToPosition(currentDatePos);
+        selectTargetDate(Calendar.getInstance().getTime());
+        mAdapter.notifyDataSetChanged();
     }
 }
