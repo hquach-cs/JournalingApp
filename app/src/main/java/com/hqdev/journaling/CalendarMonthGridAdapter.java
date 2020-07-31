@@ -18,6 +18,7 @@ public class CalendarMonthGridAdapter extends ArrayAdapter<Date> {
     LayoutInflater inflater;
     List<Date> days;
     int month,year;
+    DateClass targetDate;
 
     public CalendarMonthGridAdapter(Context context, List<Date> days,int month,int year){
         super(context,R.layout.calendar_layout,days);
@@ -25,6 +26,7 @@ public class CalendarMonthGridAdapter extends ArrayAdapter<Date> {
         this.days = days;
         this.month = month;
         this.year = year;
+        this.targetDate = new DateClass(Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DAY_OF_MONTH),Calendar.getInstance().get(Calendar.YEAR));
     }
 
     @Override
@@ -56,14 +58,17 @@ public class CalendarMonthGridAdapter extends ArrayAdapter<Date> {
         TextView textView = (TextView)view.findViewById(R.id.day_date);
         // clear styling
         textView.setTextColor(Color.WHITE);
-
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundResource(0);
         if (month != mMonth || year != mYear) {
             // if this day is outside current month, grey it out
             textView.setTextColor(Color.DKGRAY);
         } else if (mDay == Calendar.getInstance().get(Calendar.DATE) && mMonth == Calendar.getInstance().get(Calendar.MONTH) && mYear == Calendar.getInstance().get(Calendar.YEAR)  ) {
             // if it is today, set it to blue/bold
+            textView.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+        }
+        if(mDay == targetDate.day && mMonth == targetDate.month && mYear == targetDate.year){
             textView.setTextColor(Color.BLACK);
-            textView.setGravity(Gravity.CENTER);
             textView.setBackgroundResource(R.drawable.ic_checkbox_blank_circle);
         }
         textView.setText(String.valueOf(calendar.get(Calendar.DATE)));

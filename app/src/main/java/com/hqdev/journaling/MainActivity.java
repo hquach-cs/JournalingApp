@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 }else if (!recyclerView.canScrollHorizontally(-1)) {
                     calendarView.getPrevYearMonth();
                 }
+                int position = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     //Dragging
-                    int position = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                     toolbar_title.setText(calendarView.getMonth(position));
                 } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    int position = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                     toolbar_title.setText(calendarView.getMonth(position));
                 }
             }
         });
+
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,4 +60,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

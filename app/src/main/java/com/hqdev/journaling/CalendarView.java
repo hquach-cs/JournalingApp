@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CalendarView extends LinearLayout {
@@ -22,6 +23,7 @@ public class CalendarView extends LinearLayout {
     List<DateClass> months;
     DateClass nextYear;
     DateClass prevYear;
+    DateClass targetDate;
 
     public CalendarView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -32,6 +34,7 @@ public class CalendarView extends LinearLayout {
 
     private void MonthData(int year,boolean next){
         if(months == null) {
+
             nextYear = new DateClass();
             prevYear = new DateClass();
             nextYear.year = year;
@@ -54,6 +57,7 @@ public class CalendarView extends LinearLayout {
     }
 
     private void initRecyclerView(){
+        targetDate = new DateClass();
         recyclerView = findViewById(R.id.calendar_recyclerView);
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         layoutManager.scrollToPosition(Calendar.getInstance().get(Calendar.MONTH));
@@ -61,7 +65,7 @@ public class CalendarView extends LinearLayout {
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
         MonthData(Calendar.getInstance().get(Calendar.YEAR),false);
-        mAdapter = new CalendarMonthAdapter(months);
+        mAdapter = new CalendarMonthAdapter(months,this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -87,5 +91,14 @@ public class CalendarView extends LinearLayout {
         MonthData(prevYear.year,false);
         mAdapter.notifyDataSetChanged();
         layoutManager.scrollToPosition(12);
+    }
+
+    public void selectTargetDate(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        targetDate.year = calendar.get(Calendar.YEAR);
+        targetDate.month = calendar.get(Calendar.MONTH);
+        targetDate.day = calendar.get(Calendar.DAY_OF_MONTH);
+        Log.i("TargetDate","" + targetDate.month + "/" + targetDate.day + "/" + targetDate.year);
     }
 }
