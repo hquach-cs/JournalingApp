@@ -13,18 +13,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class CalendarAdapter extends ArrayAdapter<Date> {
+public class CalendarMonthGridAdapter extends ArrayAdapter<Date> {
 
     LayoutInflater inflater;
     List<Date> days;
-    DateClass targetDate;
+    int month,year;
 
-
-    public CalendarAdapter(Context context, List<Date> days, DateClass targetDate){
+    public CalendarMonthGridAdapter(Context context, List<Date> days,int month,int year){
         super(context,R.layout.calendar_layout,days);
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.days = days;
-        this.targetDate = targetDate;
+        this.month = month;
+        this.year = year;
     }
 
     @Override
@@ -47,13 +47,9 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         Calendar calendar = Calendar.getInstance();
         Date date = getItem(position);
         calendar.setTime(date);
-        int day = calendar.get(Calendar.DATE);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-
-        Date today = new Date();
-        Calendar calendarToday = Calendar.getInstance();
-        calendarToday.setTime(today);
+        int mDay = calendar.get(Calendar.DATE);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mYear = calendar.get(Calendar.YEAR);
         // inflate item if it does not exist yet
         if (view == null)
             view = inflater.inflate(R.layout.calendar_day_layout, parent, false);
@@ -61,10 +57,10 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         // clear styling
         textView.setTextColor(Color.WHITE);
 
-        if (month != calendarToday.get(Calendar.MONTH) || year != calendarToday.get(Calendar.YEAR)) {
+        if (month != mMonth || year != mYear) {
             // if this day is outside current month, grey it out
             textView.setTextColor(Color.DKGRAY);
-        } else if (day == calendarToday.get(Calendar.DATE)) {
+        } else if (mDay == Calendar.getInstance().get(Calendar.DATE) && mMonth == Calendar.getInstance().get(Calendar.MONTH) && mYear == Calendar.getInstance().get(Calendar.YEAR)  ) {
             // if it is today, set it to blue/bold
             textView.setTextColor(Color.BLACK);
             textView.setGravity(Gravity.CENTER);

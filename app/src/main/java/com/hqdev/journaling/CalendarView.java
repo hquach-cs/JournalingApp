@@ -19,8 +19,6 @@ public class CalendarView extends LinearLayout {
     RecyclerView recyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
-    DateClass targetDate;
-    DateClass currentDate;
     List<DateClass> months;
     Boolean minimized;
 
@@ -31,26 +29,26 @@ public class CalendarView extends LinearLayout {
         initRecyclerView();
     }
 
-    private void MonthData(){
-        months = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        currentDate = new DateClass(calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.YEAR));
-        months.add(new DateClass(calendar.get(Calendar.MONTH)-1,calendar.get(Calendar.YEAR)));
-        months.add(currentDate);
-        months.add(new DateClass(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR)));
+    private void MonthData(int year,boolean next){
+        if(months == null) {
+            months = new ArrayList<>();
+            Calendar calendar = Calendar.getInstance();
+            for (int i = 0; i < 12; i++) {
+                months.add(new DateClass(i, year));
+            }
+        }
     }
 
     private void initRecyclerView(){
         recyclerView = findViewById(R.id.calendar_recyclerView);
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        layoutManager.scrollToPosition(1);
+        layoutManager.scrollToPosition(Calendar.getInstance().get(Calendar.MONTH));
         recyclerView.setLayoutManager(layoutManager);
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
-        MonthData();
-        //Data
-        mAdapter = new CalendarMonthAdapter(months,currentDate,targetDate);
+        MonthData(Calendar.getInstance().get(Calendar.YEAR),false);
+        mAdapter = new CalendarMonthAdapter(months);
         recyclerView.setAdapter(mAdapter);
     }
 

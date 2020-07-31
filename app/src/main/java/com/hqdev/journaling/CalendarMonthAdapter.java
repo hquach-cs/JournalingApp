@@ -16,12 +16,8 @@ import java.util.List;
 
 public class CalendarMonthAdapter extends RecyclerView.Adapter<CalendarMonthAdapter.CalendarMonthHolder> {
     List<DateClass> data;
-    DateClass currentDate,targetDate;
-    DateClass currentMonth;
-    public CalendarMonthAdapter(List<DateClass> data,DateClass currentDate,DateClass targetDate){
+    public CalendarMonthAdapter(List<DateClass> data){
         this.data = data;
-        this.currentDate = currentDate;
-        this.targetDate = targetDate;
     }
 
     public static class CalendarMonthHolder extends RecyclerView.ViewHolder{
@@ -33,19 +29,20 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<CalendarMonthAdap
             gridView = view.findViewById(R.id.calender_grid);
         }
 
-        public void CreateGrid(int month, int year,DateClass targetDate){
+        public void CreateGrid(int month, int year){
             List<Date> days = new ArrayList<>();
             Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR,year);
+            calendar.set(Calendar.MONTH,month);
             int monthBeginningCell;
             calendar.set(Calendar.DAY_OF_MONTH, 1);
             monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
             calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
-            while (days.size() < 35) {
+            while (days.size() < 42) {
                 days.add(calendar.getTime());
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
-
-            gridView.setAdapter(new CalendarAdapter(context, days, targetDate));
+            gridView.setAdapter(new CalendarMonthGridAdapter(context, days,month,year));
         }
     }
 
@@ -59,7 +56,7 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<CalendarMonthAdap
     @Override
     public void onBindViewHolder(@NonNull CalendarMonthHolder holder, int position) {
         DateClass date = data.get(position);
-        holder.CreateGrid(date.month,date.year,targetDate);
+        holder.CreateGrid(date.month,date.year);
     }
 
     @Override

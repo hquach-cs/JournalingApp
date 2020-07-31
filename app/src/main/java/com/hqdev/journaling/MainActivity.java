@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
     CalendarView calendarView;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
+        toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)]);
         recyclerView = calendarView.getRecyclerView();
         recyclerView.addOnScrollListener ( new RecyclerView.OnScrollListener() {
             @Override
