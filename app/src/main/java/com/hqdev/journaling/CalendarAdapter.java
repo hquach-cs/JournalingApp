@@ -2,15 +2,12 @@ package com.hqdev.journaling;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import androidx.core.view.GestureDetectorCompat;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,10 +17,10 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
 
     LayoutInflater inflater;
     List<Date> days;
-    com.hqdev.journaling.Date targetDate;
+    DateClass targetDate;
 
 
-    public CalendarAdapter(Context context, List<Date> days, com.hqdev.journaling.Date targetDate){
+    public CalendarAdapter(Context context, List<Date> days, DateClass targetDate){
         super(context,R.layout.calendar_layout,days);
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.days = days;
