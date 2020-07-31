@@ -20,7 +20,8 @@ public class CalendarView extends LinearLayout {
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
     List<DateClass> months;
-    Boolean minimized;
+    DateClass nextYear;
+    DateClass prevYear;
 
     public CalendarView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -31,17 +32,29 @@ public class CalendarView extends LinearLayout {
 
     private void MonthData(int year,boolean next){
         if(months == null) {
+            nextYear = new DateClass();
+            prevYear = new DateClass();
+            nextYear.year = year;
+            prevYear.year = year;
             months = new ArrayList<>();
-            Calendar calendar = Calendar.getInstance();
             for (int i = 0; i < 12; i++) {
                 months.add(new DateClass(i, year));
+            }
+            return;
+        }
+        if(next){
+            for (int i = 0; i < 12; i++) {
+                months.add(new DateClass(i, year));
+            }
+        }else{
+            for (int i = 11; i >= 0; i--) {
+                months.add(0,new DateClass(i, year));
             }
         }
     }
 
     private void initRecyclerView(){
         recyclerView = findViewById(R.id.calendar_recyclerView);
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         layoutManager.scrollToPosition(Calendar.getInstance().get(Calendar.MONTH));
         recyclerView.setLayoutManager(layoutManager);
@@ -58,7 +71,21 @@ public class CalendarView extends LinearLayout {
 
     public String getMonth(int position){
         DateClass date = months.get(position);
-        return date.getMonth();
+        return date.getMonth() + " " + date.year;
     }
 
+    public void getNextYearMonth(){
+        Log.i("Calendar","Next");
+        nextYear.year++;
+        MonthData(nextYear.year,true);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void getPrevYearMonth(){
+        Log.i("Calendar","Prev");
+        prevYear.year--;
+        MonthData(prevYear.year,false);
+        mAdapter.notifyDataSetChanged();
+        layoutManager.scrollToPosition(12);
+    }
 }

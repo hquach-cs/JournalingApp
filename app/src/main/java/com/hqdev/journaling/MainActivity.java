@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -29,20 +30,24 @@ public class MainActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)]);
+        toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)] + " " + Calendar.getInstance().get(Calendar.YEAR));
         recyclerView = calendarView.getRecyclerView();
         recyclerView.addOnScrollListener ( new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
+                if (!recyclerView.canScrollHorizontally(1)) {
+                    calendarView.getNextYearMonth();
+                }else if (!recyclerView.canScrollHorizontally(-1)) {
+                    calendarView.getPrevYearMonth();
+                }
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     //Dragging
+                    int position = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                    toolbar_title.setText(calendarView.getMonth(position));
                 } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int position = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                     toolbar_title.setText(calendarView.getMonth(position));
                 }
-
             }
         });
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
