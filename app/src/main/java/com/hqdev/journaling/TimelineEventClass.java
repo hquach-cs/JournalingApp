@@ -4,54 +4,33 @@ import java.util.Calendar;
 
 public class TimelineEventClass {
 
-    Boolean isDivider;
-    String event_name;
-    String event_desc;
-    String event_startTime;
-    String event_endTime;
-    Calendar event_createDate;
-    String divider_time;
+    int Divider;
+    String Title;
+    String Description;
+    DateClass StartTime;
+    DateClass EndTime;
+    DateClass CreationDate;
+    DateClass DividerTime;
 
-    public TimelineEventClass(String event_name, String event_desc, String event_startTime, String event_endTime){
-        this.event_name = event_name;
-        this.event_desc = event_desc;
-        this.event_startTime = event_startTime;
-        this.event_endTime = event_endTime;
-        this.event_createDate = Calendar.getInstance();
-        this.isDivider = false;
+    //Divider Constructor
+    public TimelineEventClass(DateClass date){
+        Divider = 0;
+        DividerTime = date;
     }
 
-    public TimelineEventClass(String divider_time){
-        this.divider_time = divider_time;
-        this.isDivider = true;
+    //Divider Event
+    public TimelineEventClass(String eventTitle, String eventDesc,DateClass startTime, DateClass endTime){
+        Divider = 1;
+        Title = eventTitle;
+        Description = eventDesc;
+        StartTime = startTime;
+        EndTime = endTime;
+        CreationDate = new DateClass();
     }
 
-    public String getEvent_name() {
-        return event_name;
+    //Empty Event
+    public TimelineEventClass(){
+        Divider = 1;
     }
 
-    public String getEvent_desc() {
-        return event_desc;
-    }
-
-    public String getEvent_startTime() {
-        return event_startTime;
-    }
-
-    public String getEvent_endTime() {
-        return event_endTime;
-    }
-
-    public Calendar getEvent_createDate() {
-        return event_createDate;
-    }
-
-    public String getDivider_time(){ return divider_time; }
-
-    public int getIsDivider(){
-        if(this.isDivider)
-            return 0;
-        else
-            return 1;
-    }
 }
