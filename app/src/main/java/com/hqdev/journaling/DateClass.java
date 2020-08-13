@@ -9,7 +9,7 @@ public class DateClass {
     public int month;
     public int hour;
     public int minute;
-    public boolean AMorPM; //0 = AM | 1 = PM
+    public boolean PM; //0 = AM | 1 = PM
 
     //Constructor Current Date
     public DateClass(){
@@ -21,18 +21,7 @@ public class DateClass {
         minute = calendar.get(Calendar.MINUTE);
     }
 
-    //Constructor TimeSetup
-    public DateClass(String time,boolean AMorPM,int month,int day,int year){
-        this.year = year;
-        this.day = day;
-        this.month = month;
-        String[] timeSplit = time.split(":");
-        hour = Integer.parseInt(timeSplit[0]);
-        minute = Integer.parseInt(timeSplit[1]);
-        this.AMorPM = AMorPM;
-    }
-
-    public DateClass(String time){
+    public DateClass(String time,Boolean PM){
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         day = calendar.get(Calendar.DATE);
@@ -40,6 +29,7 @@ public class DateClass {
         String[] timeSplit = time.split(":");
         hour = Integer.parseInt(timeSplit[0]);
         minute = Integer.parseInt(timeSplit[1]);
+        this.PM = PM;
     }
 
     public DateClass(int month, int day, int year){
@@ -48,14 +38,6 @@ public class DateClass {
         this.month = month;
     }
 
-    public DateClass(int month, int day, int year,int hour, int min,boolean AMorPM){
-        this.year = year;
-        this.day = day;
-        this.month = month;
-        this.hour = hour;
-        this.minute = min;
-        this.AMorPM = AMorPM;
-    }
 
     public DateClass(int month,int year){
         this.month = month;
@@ -71,7 +53,15 @@ public class DateClass {
     }
 
     public String getTime(){
-        return "" + hour + ":" + ((minute == 0) ? "00" : minute);
+        return "" + hour + ":" + ((minute == 0) ? "00" : (minute < 10) ? "0" + minute : minute) ;
+    }
+
+    public String getWholeDate(){
+        return( monthNames[month] + " " + day + ", " + year );
+    }
+
+    public String getTotalTime(){
+        return "" + hour + ":" + ((minute == 0) ? "00" : (minute < 10) ? "0" + minute : minute) + " " + ((PM) ? "PM" : "AM") ;
     }
 
 }

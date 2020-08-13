@@ -17,7 +17,6 @@ public class TimelineView extends LinearLayout {
     RecyclerView recyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
-    List<Integer> eventType;
     List<List<TimelineEventClass>> events;
 
     public TimelineView(Context context, AttributeSet attrs){
@@ -29,25 +28,25 @@ public class TimelineView extends LinearLayout {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        eventType = new ArrayList<>();
         events = new ArrayList<>();
         createEvents();
         // specify an adapter (see also next example)
-        mAdapter = new TimelineAdapter(eventType,events);
+        mAdapter = new TimelineAdapter(events);
         recyclerView.setAdapter(mAdapter);
     }
 
     void createEvents(){
-        eventType.add(0);
-        eventType.add(2);
-        eventType.add(0);
-        events.add(new ArrayList<TimelineEventClass>());
-        events.add(new ArrayList<TimelineEventClass>());
-        events.add(new ArrayList<TimelineEventClass>());
-        events.get(0).add(new TimelineEventClass(new DateClass("1:00")));
-        events.get(1).add(new TimelineEventClass("Food Shopping","Kroger on ...",new DateClass("2:00"),new DateClass("1:00")));
-        events.get(1).add(new TimelineEventClass("Food Shopping","Kroger on ...",new DateClass("2:00"),new DateClass("1:00")));
-        events.get(2).add(new TimelineEventClass(new DateClass("2:00")));
+        for(int i = 0; i < 24;i++){
+            events.add(new ArrayList<TimelineEventClass>());
+        }
+        events.get(0).add(new TimelineEventClass(new DateClass("12:00",false),true));
+        for(int i = 1; i < 12;i++){
+            events.get(i).add(new TimelineEventClass(new DateClass(""+i+":00",false),false));
+        }
+        events.get(12).add(new TimelineEventClass(new DateClass("12:00",true),false));
+        for(int i = 13; i < 24;i++){
+            events.get(i).add(new TimelineEventClass(new DateClass(""+(i-12)+":00",true),false));
+        }
     }
 
 }

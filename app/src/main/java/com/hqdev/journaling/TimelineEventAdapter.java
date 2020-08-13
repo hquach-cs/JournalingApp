@@ -8,12 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdapter.TimelineEventHolder> {
     List<TimelineEventClass> events;
 
-    public TimelineEventAdapter(List<TimelineEventClass> events){ this.events = events;}
+    public TimelineEventAdapter(List<TimelineEventClass> events){
+        List<TimelineEventClass> event = new ArrayList<>(events);
+        event.remove(0);
+        this.events = event;
+    }
 
     public static class TimelineEventHolder extends RecyclerView.ViewHolder{
         TextView eventTitle,eventDesc,eventTime;

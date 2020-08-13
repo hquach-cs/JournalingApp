@@ -5,10 +5,72 @@
     android:layout_alignParentRight="true"
     android:padding="2dp"
     >
+    <RelativeLayout
+        android:id="@+id/newday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_card01"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/timeline_newday_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/timeline_newday_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="August 21, 2020"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_weight="10"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/timeline_newday_event_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Events: 0"
+            android:textSize="14sp"
+            android:layout_below="@id/timeline_newday_title"
+            />
+    </RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newday">
+
+        <TextView
+            android:id="@+id/divider_time"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="12:00 PM"
+            android:layout_marginLeft="10dp"
+            android:textSize="13sp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorAccent"
+            />
+
+        <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:layout_toRightOf="@id/divider_time"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"/>
+    </RelativeLayout>
+    <!--
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeline_event_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="50dp" />
-
+        android:minHeight="50dp"
+        android:layout_below="@id/divider"/>
+        -->
 </RelativeLayout>
