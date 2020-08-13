@@ -22,7 +22,17 @@ public class DateClass {
     }
 
     //Constructor TimeSetup
-    public DateClass(String time,boolean AMorPM){
+    public DateClass(String time,boolean AMorPM,int month,int day,int year){
+        this.year = year;
+        this.day = day;
+        this.month = month;
+        String[] timeSplit = time.split(":");
+        hour = Integer.parseInt(timeSplit[0]);
+        minute = Integer.parseInt(timeSplit[1]);
+        this.AMorPM = AMorPM;
+    }
+
+    public DateClass(String time){
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         day = calendar.get(Calendar.DATE);
@@ -30,7 +40,6 @@ public class DateClass {
         String[] timeSplit = time.split(":");
         hour = Integer.parseInt(timeSplit[0]);
         minute = Integer.parseInt(timeSplit[1]);
-        this.AMorPM = AMorPM;
     }
 
     public DateClass(int month, int day, int year){
@@ -39,12 +48,13 @@ public class DateClass {
         this.month = month;
     }
 
-    public DateClass(int month, int day, int year,int hour, int min){
+    public DateClass(int month, int day, int year,int hour, int min,boolean AMorPM){
         this.year = year;
         this.day = day;
         this.month = month;
         this.hour = hour;
         this.minute = min;
+        this.AMorPM = AMorPM;
     }
 
     public DateClass(int month,int year){

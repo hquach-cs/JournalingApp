@@ -68,6 +68,19 @@ public class CalendarView extends LinearLayout {
         MonthData(Calendar.getInstance().get(Calendar.YEAR),false);
         mAdapter = new CalendarMonthAdapter(months,this);
         recyclerView.setAdapter(mAdapter);
+        //Slow down the fling on calendar month change motion.
+        recyclerView.setOnFlingListener(new RecyclerView.OnFlingListener() {
+            @Override
+            public boolean onFling(int velocityX, int velocityY) {
+                if (Math.abs(velocityX) > 5000) {
+                    velocityX = 5000 * (int) Math.signum((double) velocityX);
+                    recyclerView.fling(velocityX, velocityY);
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
 
     public RecyclerView getRecyclerView(){

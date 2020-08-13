@@ -28,9 +28,15 @@ public class TimelineEventClass {
         CreationDate = new DateClass();
     }
 
-    //Empty Event
-    public TimelineEventClass(){
-        Divider = 1;
+    public TimelineEventClass(Boolean d){
+        if(d)
+            Divider = 1;
+        else
+            Divider = 0;
+    }
+
+    public String getEventTime(){
+        return (StartTime.getTime()+ "-" + EndTime.getTime());
     }
 
 }
