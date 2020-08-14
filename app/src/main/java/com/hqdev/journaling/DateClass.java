@@ -23,12 +23,12 @@ public class DateClass {
 
     public DateClass(String time,Boolean PM){
         Calendar calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        day = calendar.get(Calendar.DATE);
-        month = calendar.get(Calendar.MONTH);
+        this.year = calendar.get(Calendar.YEAR);
+        this.day = calendar.get(Calendar.DATE);
+        this.month = calendar.get(Calendar.MONTH);
         String[] timeSplit = time.split(":");
-        hour = Integer.parseInt(timeSplit[0]);
-        minute = Integer.parseInt(timeSplit[1]);
+        this.hour = Integer.parseInt(timeSplit[0]);
+        this.minute = Integer.parseInt(timeSplit[1]);
         this.PM = PM;
     }
 
@@ -60,7 +60,7 @@ public class DateClass {
         return( monthNames[month] + " " + day + ", " + year );
     }
 
-    public String getTotalTime(){
+    public String getWholeTime(){
         return "" + hour + ":" + ((minute == 0) ? "00" : (minute < 10) ? "0" + minute : minute) + " " + ((PM) ? "PM" : "AM") ;
     }
 
