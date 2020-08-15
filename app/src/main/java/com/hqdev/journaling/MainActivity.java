@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     CalendarView calendarView;
+    TimelineView timelineView;
     Toolbar toolbar;
     TextView toolbar_title,toolbar_today;
     RecyclerView recyclerView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         calendarView = findViewById(R.id.calendarView);
+        timelineView = findViewById(R.id.timelineView);
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)] + " " + Calendar.getInstance().get(Calendar.YEAR));
@@ -64,9 +66,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("FAB","Clicked");
+                timelineView.addEvent(new TimelineEventClass("Food Shopping","Kroger on ....",new DateClass("12:00",false),new DateClass("1:00",false)));
             }
         });
+
     }
 
 }

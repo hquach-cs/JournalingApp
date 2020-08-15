@@ -3,7 +3,7 @@
     android:id="@+id/newday"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_card01"
     android:padding="5dp">
     <TextView
@@ -13,7 +13,7 @@
         android:text="August 21, 2020"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_weight="10"
+        android:layout_centerHorizontal="true"
         />
     <TextView
         android:id="@+id/timeline_newday_event_cnt"
@@ -22,5 +22,6 @@
         android:text="Events: 0"
         android:textSize="14sp"
         android:layout_below="@id/timeline_newday_title"
+        android:layout_centerHorizontal="true"
         />
 </RelativeLayout>

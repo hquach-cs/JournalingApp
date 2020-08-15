@@ -1,5 +1,6 @@
 package com.hqdev.journaling;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,10 @@ import java.util.List;
 
 public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdapter.TimelineEventHolder> {
     List<TimelineEventClass> events;
-
-    public TimelineEventAdapter(List<TimelineEventClass> e){
-        List<TimelineEventClass> events = new ArrayList<>(e);
-        events.remove(0);
-        this.events = events;
+    public TimelineEventAdapter(List<TimelineEventClass> events){
+        List<TimelineEventClass> e = new ArrayList<>(events);
+        e.remove(0);
+        this.events = e;
     }
 
     public static class TimelineEventHolder extends RecyclerView.ViewHolder{

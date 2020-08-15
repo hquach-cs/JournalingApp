@@ -17,6 +17,7 @@ import java.util.List;
 
 public class TimelineAdapter extends RecyclerView.Adapter{
     List<List<TimelineEventClass>> events;
+    Boolean isVisible = false;
     public TimelineAdapter(List<List<TimelineEventClass>> events){
         this.events = events;
     }
@@ -26,7 +27,7 @@ public class TimelineAdapter extends RecyclerView.Adapter{
         RecyclerView recyclerView;
         RecyclerView.Adapter mAdapter;
         RecyclerView.LayoutManager layoutManager;
-
+        List<TimelineEventClass> events;
         public TimelineHolder(View view) {
             super(view);
             dividerTime = view.findViewById(R.id.divider_time);
@@ -36,9 +37,10 @@ public class TimelineAdapter extends RecyclerView.Adapter{
 
         }
 
-        public void init(List<TimelineEventClass> event){
-            dividerTime.setText(event.get(0).DividerTime.getWholeTime());
-            mAdapter = new TimelineEventAdapter(event);
+        public void init(List<TimelineEventClass> events){
+            this.events = events;
+            dividerTime.setText(events.get(0).DividerTime.getWholeTime());
+            mAdapter = new TimelineEventAdapter(events);
             recyclerView.setAdapter(mAdapter);
         }
     }
@@ -83,11 +85,12 @@ public class TimelineAdapter extends RecyclerView.Adapter{
         }else{
             ((TimelineHolder)holder).init(events.get(position));
         }
+
+        this.isVisible = true;
     }
 
     @Override
     public int getItemCount() {
         return events.size();
     }
-
 }

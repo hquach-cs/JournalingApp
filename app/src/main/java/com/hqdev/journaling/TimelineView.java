@@ -49,4 +49,9 @@ public class TimelineView extends LinearLayout {
         }
     }
 
+    public void addEvent(TimelineEventClass event){
+        this.events.get(1).add(event);
+        mAdapter.notifyItemChanged(1);
+    }
+
 }
