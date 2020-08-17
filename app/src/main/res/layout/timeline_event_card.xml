@@ -9,7 +9,7 @@
         android:id="@+id/timeline_card"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_card01"
+        android:background="@drawable/bg_event"
         android:padding="5dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp">
@@ -26,6 +26,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_weight="10"
+                android:textColor="@color/colorAccentLight"
                 />
             <TextView
                 android:id="@+id/timeline_card_time"
@@ -33,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="1:00-2:00"
                 android:textSize="14sp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="@color/colorAccentLight"/>
         </LinearLayout>
         <TextView
             android:id="@+id/timeline_card_desc"
@@ -42,6 +44,7 @@
             android:text="This is a descrpition"
             android:layout_below="@id/timeline_card_title"
             android:textSize="14sp"
+            android:textColor="@color/colorAccentLight"
             />
     </RelativeLayout>
 </RelativeLayout>

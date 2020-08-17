@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00adb5</color>
-    <color name="colorPrimaryDark">#393e46</color>
-    <color name="colorAccent">#EEEEEE</color>
-
-    <!-- Dark Theme -->
-    <color name="colorDarkBackground">#222222</color>
-    <color name="colorDarkPrimary">#00adb5</color>
-    <color name="colorDarkPrimaryDark">#393e46</color>
-    <color name="colorDarkAccent">#EEEEEE</color>
-
-    <!-- Light Theme -->
-    <color name="colorLightBackground">#FFFFFF</color>
-    <color name="colorLightPrimary">#F0F0F0</color>
-    <color name="colorLightPrimaryDark">#393e46</color>
-    <color name="colorLightAccent">#00adb5</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryLight">#FFDE03</color>
+    <color name="colorSecondary">#202020</color>
+    <color name="colorSecondaryDark">#202020</color>
+    <color name="colorSecondaryLight">#aa0336FF</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccentDark">#FFFFFF</color>
+    <color name="colorAccentLight">#000000</color>
+    <color name="colorBackgroundDark">#202020</color>
+    <color name="colorBackgroundLight">#FFFFFF</color>
 </resources>

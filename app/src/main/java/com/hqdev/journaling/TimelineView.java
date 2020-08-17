@@ -47,6 +47,8 @@ public class TimelineView extends LinearLayout {
         for(int i = 13; i < 24;i++){
             events.get(i).add(new TimelineEventClass(new DateClass(""+(i-12)+":00",true),false));
         }
+        events.get(1).add(new TimelineEventClass("Food Shopping","Kroger on ....",new DateClass("12:00",false),new DateClass("1:00",false)));
+
     }
 
     public void addEvent(TimelineEventClass event){

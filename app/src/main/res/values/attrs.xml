@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="color">
+        <attr name="colorAccentLight" format="color"></attr>
         <!-- Dark Theme -->
         <attr name="colorDarkBackground" format="color"></attr>
         <attr name="colorDarkPrimary" format="color"></attr>
@@ -13,7 +14,7 @@
         <attr name="colorLightPrimaryDark" format="color"></attr>
         <attr name="colorLightAccent" format="color"></attr>
     </declare-styleable>
-    
+
     <declare-styleable name="CalendarView" >
 
     </declare-styleable>

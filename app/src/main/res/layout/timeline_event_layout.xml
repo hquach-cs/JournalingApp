@@ -18,14 +18,14 @@
             android:layout_marginLeft="10dp"
             android:textSize="13sp"
             android:layout_centerVertical="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorAccentLight"
             />
 
         <View
             android:id="@+id/divider_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorAccentLight"
             android:layout_toRightOf="@id/divider_time"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"/>
