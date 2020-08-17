@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,7 @@ public class TimelineAdapter extends RecyclerView.Adapter{
     public static class TimelineHolder extends RecyclerView.ViewHolder {
         TextView dividerTime;
         RecyclerView recyclerView;
-        RecyclerView.Adapter mAdapter;
+        RecyclerView.Adapter mmAdapter;
         RecyclerView.LayoutManager layoutManager;
         List<TimelineEventClass> events;
         public TimelineHolder(View view) {
@@ -34,15 +35,34 @@ public class TimelineAdapter extends RecyclerView.Adapter{
             recyclerView = view.findViewById(R.id.timeline_event_recyclerView);
             layoutManager = new LinearLayoutManager(view.getContext());
             recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(false);
 
         }
 
         public void init(List<TimelineEventClass> events){
             this.events = events;
             dividerTime.setText(events.get(0).DividerTime.getWholeTime());
-            mAdapter = new TimelineEventAdapter(events);
-            recyclerView.setAdapter(mAdapter);
+            mmAdapter = new TimelineEventAdapter(events);
+            new ItemTouchHelper(simpleItemTouchCallback).attachToRecyclerView(recyclerView);
+            recyclerView.setAdapter(mmAdapter);
         }
+
+
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+                //Remove swiped item from list and notify the RecyclerView
+                int pos = viewHolder.getAdapterPosition()+1;
+                events.remove(pos);
+                init(events);
+            }
+        };
     }
 
     public static class TimelineDayHolder extends RecyclerView.ViewHolder{
@@ -93,4 +113,5 @@ public class TimelineAdapter extends RecyclerView.Adapter{
     public int getItemCount() {
         return events.size();
     }
+
 }
