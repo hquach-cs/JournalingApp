@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 calendarView.returnToday();
                 toolbar_title.setText(monthNames[Calendar.getInstance().get(Calendar.MONTH)] + " " + Calendar.getInstance().get(Calendar.YEAR));
+                timelineView.getCurrentTimelinePos();
             }
         });
 

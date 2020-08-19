@@ -36,29 +36,47 @@ public class TimelineView extends LinearLayout {
         // specify an adapter (see also next example)
         mAdapter = new TimelineAdapter(events);
         pos = Calendar.getInstance().get(Calendar.HOUR) + ((Calendar.getInstance().get(Calendar.AM_PM) == 1) ? 12 : 0) + 1;
-        layoutManager.scrollToPosition(pos+7);
+        layoutManager.scrollToPosition(getTimelinePos());
         recyclerView.setAdapter(mAdapter);
     }
 
     void createEvents(){
-        for(int i = 0; i < 25;i++){
-            events.add(new ArrayList<TimelineEventClass>());
-        }
-        events.get(0).add(new TimelineEventClass(new DateClass("12:00",false),true));
-        events.get(1).add(new TimelineEventClass(new DateClass("12:00",false),false));
-        for(int i = 1; i < 12;i++){
-            events.get((i+1)).add(new TimelineEventClass(new DateClass(""+i+":00",false),false));
-        }
-        events.get(13).add(new TimelineEventClass(new DateClass("12:00",true),false));
-        for(int i = 13; i < 24;i++){
-            events.get(i+1).add(new TimelineEventClass(new DateClass(""+(i-12)+":00",true),false));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -(calendar.get(Calendar.DAY_OF_WEEK) - 1));
+        int startingpos;
+        for(int cnt = 0; cnt < 7;cnt++){
+            startingpos = cnt*25;
+            for(int i = 0; i < 25;i++){
+                events.add(new ArrayList<TimelineEventClass>());
+            }
+            events.get(startingpos).add(new TimelineEventClass(new DateClass(calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.YEAR)),true));
+            events.get(startingpos+1).add(new TimelineEventClass(new DateClass("12:00",false),false));
+            for(int i = 1; i < 12;i++){
+                events.get(startingpos+i+1).add(new TimelineEventClass(new DateClass(""+i+":00",false),false));
+            }
+            events.get(startingpos+13).add(new TimelineEventClass(new DateClass("12:00",true),false));
+            for(int i = 13; i < 24;i++){
+                events.get(startingpos+i+1).add(new TimelineEventClass(new DateClass(""+(i-12)+":00",true),false));
+            }
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
     }
+
+
 
     public void addEvent(TimelineEventClass event){
         this.events.get(1).add(event);
         mAdapter.notifyItemChanged(1);
     }
 
+    int getTimelinePos(){
+        Calendar calendar = Calendar.getInstance();
+        int pos = (calendar.get(Calendar.DAY_OF_WEEK) - 1)*25;
+        return pos+1+((calendar.get(Calendar.AM_PM) == 1) ? calendar.get(Calendar.HOUR) + 12: calendar.get(Calendar.HOUR));
+    }
+
+    public void getCurrentTimelinePos(){
+        this.layoutManager.scrollToPosition(getTimelinePos());
+    }
 
 }
