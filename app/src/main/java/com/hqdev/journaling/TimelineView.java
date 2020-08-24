@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ public class TimelineView extends LinearLayout {
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
     List<List<TimelineEventClass>> events;
-    int pos;
 
     public TimelineView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -35,8 +35,7 @@ public class TimelineView extends LinearLayout {
         createEvents();
         // specify an adapter (see also next example)
         mAdapter = new TimelineAdapter(events);
-        pos = Calendar.getInstance().get(Calendar.HOUR) + ((Calendar.getInstance().get(Calendar.AM_PM) == 1) ? 12 : 0) + 1;
-        layoutManager.scrollToPosition(getTimelinePos());
+        getCurrentTimelinePos();
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -71,12 +70,18 @@ public class TimelineView extends LinearLayout {
 
     int getTimelinePos(){
         Calendar calendar = Calendar.getInstance();
-        int pos = (calendar.get(Calendar.DAY_OF_WEEK) - 1)*25;
-        return pos+1+((calendar.get(Calendar.AM_PM) == 1) ? calendar.get(Calendar.HOUR) + 12: calendar.get(Calendar.HOUR));
+        return (((calendar.get(Calendar.DAY_OF_WEEK) - 1)*25)+1+((calendar.get(Calendar.AM_PM) == 1) ? calendar.get(Calendar.HOUR) + 12: calendar.get(Calendar.HOUR)));
     }
 
     public void getCurrentTimelinePos(){
-        this.layoutManager.scrollToPosition(getTimelinePos());
+        RecyclerView.SmoothScroller smoothScroller = new
+                LinearSmoothScroller(getContext()) {
+                    @Override protected int getVerticalSnapPreference() {
+                        return LinearSmoothScroller.SNAP_TO_START;
+                    }
+                };
+        smoothScroller.setTargetPosition(getTimelinePos());
+        this.layoutManager.startSmoothScroll(smoothScroller);
     }
 
 }
