@@ -6,14 +6,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView notification_number;
     CardView notification_number_container;
     int notification_num;
+    Dialog myDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                initiatePopupWindow();
                 timelineView.addEvent(new TimelineEventClass("Food Shopping","Kroger on ....",new DateClass("12:00",false),new DateClass("1:00",false)));
             }
         });
@@ -88,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
                 notification_number_container.setVisibility(View.VISIBLE);
                 notification_number.setText(""+notification_num);
             }});
+
+        myDialog = new Dialog(this);
     }
 
+    private void initiatePopupWindow() {
+        myDialog.setContentView(R.layout.timeline_addevent_layout);
+        myDialog.show();
+    }
 }

@@ -8,7 +8,7 @@
     android:padding="5dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="10dp">
     <TextView
         android:id="@+id/timeline_newday_title"
         android:layout_width="wrap_content"

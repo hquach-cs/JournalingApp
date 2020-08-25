@@ -1,5 +1,6 @@
 package com.hqdev.journaling;
 
+import android.util.EventLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +22,10 @@ public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdap
     }
 
     public static class TimelineEventHolder extends RecyclerView.ViewHolder{
+        EventCardView eventView;
         public TimelineEventHolder(View itemView) {
             super(itemView);
+            eventView = itemView.findViewById(R.id.eventCardView);
         }
     }
 
@@ -37,6 +40,7 @@ public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdap
 
     @Override
     public void onBindViewHolder(@NonNull TimelineEventHolder holder, int position) {
+
     }
 
     @Override
