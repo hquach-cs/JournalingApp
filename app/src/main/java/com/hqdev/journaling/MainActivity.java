@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initiatePopupWindow();
                 timelineView.addEvent(new TimelineEventClass("Food Shopping","Kroger on ....",new DateClass("12:00",false),new DateClass("1:00",false)));
+                initiatePopupWindow(view);
             }
         });
         notification_bell.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
         myDialog = new Dialog(this);
     }
 
-    private void initiatePopupWindow() {
-        myDialog.setContentView(R.layout.timeline_addevent_layout);
+    private void initiatePopupWindow(View v) {
+        myDialog.setCanceledOnTouchOutside(true);
+        EventAddView eventAddView = new EventAddView(v.getContext(),null);
+        myDialog.setContentView(eventAddView);
         myDialog.show();
     }
 }
