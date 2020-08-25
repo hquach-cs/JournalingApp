@@ -19,9 +19,9 @@ import java.util.Calendar;
 
 public class EventAddView extends RelativeLayout {
     EditText title;
-    TextView time;
+    TextView startTime,endTime;
     Dialog myDialog;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int mHour, mMinute,AM;
     public EventAddView(Context context, AttributeSet attrs){
         super(context,attrs);
         myDialog = new Dialog(getContext());
@@ -34,14 +34,13 @@ public class EventAddView extends RelativeLayout {
                 return true;
             }
         });
-        time = findViewById(R.id.newevent_time_start);
-        time.setOnClickListener(new View.OnClickListener()
+        startTime = findViewById(R.id.newevent_time_start);
+        startTime.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
-
                 // Launch Time Picker Dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                         new TimePickerDialog.OnTimeSetListener() {
@@ -49,8 +48,45 @@ public class EventAddView extends RelativeLayout {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
+                                if(hourOfDay > 12){
+                                    hourOfDay -= 12;
+                                    AM = 1;
+                                }else{
+                                    if(hourOfDay == 0){
+                                        hourOfDay = 12;
+                                    }
+                                    AM = 0;
+                                }
+                                startTime.setText(hourOfDay + ":" + ((minute > 9) ? minute : "0"+minute) + " " + ((AM == 1) ? "PM" : "AM"));
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+        });
+        endTime = findViewById(R.id.newevent_time_end);
+        endTime.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
+                        new TimePickerDialog.OnTimeSetListener() {
 
-                                time.setText(hourOfDay + ":" + minute);
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                if(hourOfDay > 12){
+                                    hourOfDay -= 12;
+                                    AM = 1;
+                                }else{
+                                    if(hourOfDay == 0){
+                                        hourOfDay = 12;
+                                    }
+                                    AM = 0;
+                                }
+                                endTime.setText(hourOfDay + ":" + ((minute > 9) ? minute : "0"+minute) + " " + ((AM == 1) ? "PM" : "AM"));
                             }
                         }, mHour, mMinute, false);
                 timePickerDialog.show();

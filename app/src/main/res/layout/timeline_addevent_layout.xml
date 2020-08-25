@@ -29,12 +29,35 @@
             android:hint="Event Descripition"
             android:lines="1"
             android:layout_gravity="center_horizontal" />
-        <TextView
-            android:id="@+id/newevent_time_start"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:layout_gravity="center_horizontal"
-            android:clickable="true" />
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Time: " />
+            <TextView
+                android:id="@+id/newevent_time_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:clickable="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Time: " />
+            <TextView
+                android:id="@+id/newevent_time_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:clickable="true" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

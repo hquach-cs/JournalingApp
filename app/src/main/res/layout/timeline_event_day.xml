@@ -17,8 +17,7 @@
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent"
-        />
+        android:textColor="#fff" />
     <TextView
         android:id="@+id/timeline_newday_event_cnt"
         android:layout_width="wrap_content"
@@ -27,7 +26,5 @@
         android:textSize="14sp"
         android:layout_below="@id/timeline_newday_title"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent"
-
-        />
+        android:textColor="#FFF" />
 </RelativeLayout>
