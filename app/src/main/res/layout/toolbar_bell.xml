@@ -8,7 +8,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/ic_notification"
-        android:tint="#000000"
+        android:tint="#FFF"
         />
 
     <androidx.cardview.widget.CardView

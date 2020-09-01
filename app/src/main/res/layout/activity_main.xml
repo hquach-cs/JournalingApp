@@ -4,57 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/colorBackgroundLight">
+    android:background="@drawable/main_background"
+    tools:context=".MainActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-        <include
-            layout="@layout/toolbar_bell"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Placeholder"
-            android:textColor="@color/colorAccentLight"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/toolbar_today"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorAccentLight"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
 
-            />
+            <include
+                layout="@layout/toolbar_bell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Placeholder"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toolbar_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:text="Today"
+                android:textColor="#fff"
+                android:textSize="16sp"
+
+                />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <com.hqdev.journaling.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"/>
+        android:layout_below="@id/toolbar" />
 
     <com.hqdev.journaling.TimelineView
         android:id="@+id/timelineView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/calendarView" >
+        android:layout_below="@id/calendarView">
 
     </com.hqdev.journaling.TimelineView>
 
@@ -62,13 +68,13 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:fabSize="normal"
-        android:backgroundTint="@color/colorPrimaryLight"
-        app:elevation="6dp"
+        android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        app:maxImageSize="30dp"
-        android:src="@drawable/ic_plus_sign"/>
+        android:backgroundTint="#fff"
+        android:src="@drawable/ic_plus_sign"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:maxImageSize="30dp" />
 
 </RelativeLayout>
