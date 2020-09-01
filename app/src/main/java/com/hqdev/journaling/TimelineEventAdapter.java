@@ -27,6 +27,10 @@ public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdap
             super(itemView);
             eventView = itemView.findViewById(R.id.eventCardView);
         }
+
+        public void update(TimelineEventClass event){
+            eventView.updateText(event);
+        }
     }
 
     @NonNull
@@ -40,7 +44,7 @@ public class TimelineEventAdapter extends RecyclerView.Adapter<TimelineEventAdap
 
     @Override
     public void onBindViewHolder(@NonNull TimelineEventHolder holder, int position) {
-
+        holder.update(events.get(position));
     }
 
     @Override

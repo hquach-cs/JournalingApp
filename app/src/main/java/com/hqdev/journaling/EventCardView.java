@@ -51,4 +51,11 @@ public class EventCardView extends RelativeLayout {
     public boolean onTouchEvent(MotionEvent e) {
         return gestureDetector.onTouchEvent(e);
     }
+
+    public void updateText(TimelineEventClass e){
+        title.setText(e.Title);
+        desc.setText(e.Description);
+        time.setText(e.getEventTime());
+
+    }
 }

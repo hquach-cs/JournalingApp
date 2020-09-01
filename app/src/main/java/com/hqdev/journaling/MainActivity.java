@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     CardView notification_number_container;
     int notification_num;
     Dialog myDialog;
+    Button submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +81,22 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timelineView.addEvent(new TimelineEventClass("Food Shopping","Kroger on ....",new DateClass("12:00",false),new DateClass("1:00",false)));
                 initiatePopupWindow(view);
+                submit = myDialog.findViewById(R.id.newevent_submit_button);
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        /*
+                        timelineView.addEvent(new TimelineEventClass((String)((TextView)myDialog.findViewById(R.id.newevent_title)).getText(),
+                                (String)((TextView)myDialog.findViewById(R.id.newevent_desc)).getText(),
+                                new DateClass((String)((TextView)myDialog.findViewById(R.id.newevent_time_start)).getText(),false),new DateClass((String)((TextView)myDialog.findViewById(R.id.newevent_time_end)).getText(),false)));
+                         */
+                        timelineView.addEvent(new TimelineEventClass(((EditText)myDialog.findViewById(R.id.newevent_title)).getText().toString(),
+                                ((EditText)myDialog.findViewById(R.id.newevent_desc)).getText().toString(),
+                                new DateClass("12:00",false),new DateClass("1:00",false)));
+                        myDialog.dismiss();
+                    }
+                });
             }
         });
         notification_bell.setOnClickListener(new View.OnClickListener() {
