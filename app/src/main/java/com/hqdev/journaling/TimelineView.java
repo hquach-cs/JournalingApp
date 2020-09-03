@@ -64,6 +64,7 @@ public class TimelineView extends LinearLayout {
 
 
     public void addEvent(TimelineEventClass event){
+        //How to determine position.....
         this.events.get(1).add(event);
         mAdapter.notifyItemChanged(1);
     }
